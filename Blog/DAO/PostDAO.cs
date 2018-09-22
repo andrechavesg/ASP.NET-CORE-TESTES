@@ -13,41 +13,20 @@ namespace Blog.DAO
 
         public IList<Post> Lista()
         {
-            var lista = new List<Post>();
-            using (SqlConnection cnx = ConnectionFactory.CriaConexaoAberta())
+            using (BlogContext contexto = new BlogContext())
             {
-                SqlCommand comando = cnx.CreateCommand();
-                comando.CommandText = "select * from Posts";
-                SqlDataReader leitor = comando.ExecuteReader();
-                while (leitor.Read())
-                {
-                    Post post = new Post()
-                    {
-                        Id = Convert.ToInt32(leitor["id"]),
-                        Titulo = Convert.ToString(leitor["titulo"]),
-                        Resumo = Convert.ToString(leitor["resumo"]),
-                        Categoria = Convert.ToString(leitor["categoria"])
-                    };
+                var lista = contexto.Posts.ToList();
 
-                    lista.Add(post);
-                }
+                return lista;
             }
-
-            return lista;
         }
 
         public void Adiciona(Post post)
         {
-            using (SqlConnection cnx = ConnectionFactory.CriaConexaoAberta())
+            using (BlogContext contexto = new BlogContext())
             {
-                SqlCommand comando = cnx.CreateCommand();
-                comando.CommandText = "insert into Posts (Titulo,Resumo,Categoria) values(@titulo,@resumo,@categoria)";
-
-                comando.Parameters.Add(new SqlParameter("titulo",post.Titulo));
-                comando.Parameters.Add(new SqlParameter("resumo", post.Resumo));
-                comando.Parameters.Add(new SqlParameter("categoria", post.Categoria));
-
-                comando.ExecuteNonQuery();
+                contexto.Posts.Add(post);
+                contexto.SaveChanges();
             }
         }
     }
