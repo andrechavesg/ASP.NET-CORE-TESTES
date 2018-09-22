@@ -3,6 +3,11 @@ namespace Blog.Models
 {
     public class Post
     {
+        public int Id {
+            get;
+            set;
+        }
+
         public String Titulo
         {
             get;
