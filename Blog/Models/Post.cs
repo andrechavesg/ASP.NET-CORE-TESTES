@@ -26,6 +26,16 @@ namespace Blog.Models
             set;
         }
 
+        public DateTime? DataPublicacao {
+            get;
+            set;
+        }
+
+        public bool Publicado {
+            get;
+            set;
+        }
+
         public Post()
         {
         }
