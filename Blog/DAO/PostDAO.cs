@@ -51,7 +51,7 @@ namespace Blog.DAO
             }
         }
 
-        internal Post BuscaPorId(int id)
+        public Post BuscaPorId(int id)
         {
             using (BlogContext contexto = new BlogContext())
             {
@@ -59,11 +59,23 @@ namespace Blog.DAO
             }
         }
 
-        internal void Atualiza(Post post)
+        public void Atualiza(Post post)
         {
             using (BlogContext contexto = new BlogContext())
             {
                 contexto.Entry(post).State = EntityState.Modified;
+                contexto.SaveChanges();
+            }
+        }
+
+        public void Publica(int id)
+        {
+            using (BlogContext contexto = new BlogContext())
+            {
+                Post post = contexto.Posts.Find(id);
+                post.Publicado = true;
+                post.DataPublicacao = DateTime.Now;
+
                 contexto.SaveChanges();
             }
         }
