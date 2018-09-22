@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blog.DAO;
 using Blog.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,9 @@ namespace Blog.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+            PostDAO dao = new PostDAO();
+            var lista = dao.Lista();
+
             return View(lista);
         }
 
