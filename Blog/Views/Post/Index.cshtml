@@ -16,11 +16,13 @@
         <tbody>
             @foreach (var p in Model)
             {
-                <tr>
-                    <td>@p.Titulo</td>
-                    <td>@p.Resumo</td>
-                    <td>@p.Categoria</td>
-                </tr>
+            <tr>
+                <td>@p.Titulo</td>
+                <td>@p.Resumo</td>
+                <td>@p.Categoria</td>
+                <td><a href="/Post/RemovePost/@p.Id">Remover</a></td>
+                <td><a href="/Post/Visualiza/@p.Id">Editar</a></td>
+            </tr>
              }
         </tbody>
     </table>
