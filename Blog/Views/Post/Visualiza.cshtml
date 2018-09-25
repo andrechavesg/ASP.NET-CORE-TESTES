@@ -6,23 +6,27 @@
     <title>Visualiza</title>
 </head>
 <body>
-    <form action="/Post/EditaPost" method="post">
-        <input type="hidden" name="id" value="@Model.Id" />
-        <label>
-            Titulo: <input name="titulo" maxlength="50" required value="@Model.Titulo" />
-        </label>
-        <label>
-            Resumo: <input name="resumo" required value="@Model.Resumo" />
-        </label>
-        <label>
-            Categoria: <input name="categoria" value="@Model.Categoria" />
-        </label>
+    @using (Html.BeginForm("EditaPost", "Post"))
+    {
+        @Html.LabelFor(p => p.Id)
+        @Html.TextBoxFor(p => p.Id)
+        @Html.ValidationMessageFor(p => p.Id)
+
+        @Html.LabelFor(p => p.Titulo)
+        @Html.TextBoxFor(p => p.Titulo)
+        @Html.ValidationMessageFor(p => p.Titulo)
+
+        @Html.LabelFor(p => p.Resumo)
+        @Html.TextBoxFor(p => p.Resumo)
+        @Html.ValidationMessageFor(p => p.Resumo)
+
+        @Html.LabelFor(p => p.Categoria)
+        @Html.TextBoxFor(p => p.Categoria)
+        @Html.ValidationMessageFor(p => p.Categoria)
+
         <button type="submit">Editar</button>
-    </form>
+    }
     <script src="~/js/jquery-3.3.1.js"></script>
-    <script src="~/js/jquery.validate.js"></script>
-    <script>
-        $("form").validate();
-    </script>
+    <script src="~/js/jquery.validate.unobtrusive.js"></script>
 </body>
 </html>

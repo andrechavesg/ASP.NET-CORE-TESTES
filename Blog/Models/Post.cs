@@ -12,6 +12,7 @@ namespace Blog.Models
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "Título")]
         public String Titulo
         {
             get;
