@@ -6,27 +6,17 @@
     <title>Visualiza</title>
 </head>
 <body>
-    @using (Html.BeginForm("EditaPost", "Post"))
-    {
-        @Html.LabelFor(p => p.Id)
-        @Html.TextBoxFor(p => p.Id)
-        @Html.ValidationMessageFor(p => p.Id)
+    <form asp-controller="Post" asp-action="EditaPost" method="post">
+        <label asp-for="Id"></label>
+        <input asp-for="Id" />
+        <span asp-validation-for="Id"></span>
 
-        @Html.LabelFor(p => p.Titulo)
-        @Html.TextBoxFor(p => p.Titulo)
-        @Html.ValidationMessageFor(p => p.Titulo)
+        @Html.EditorFor(p => p)
 
-        @Html.LabelFor(p => p.Resumo)
-        @Html.TextBoxFor(p => p.Resumo)
-        @Html.ValidationMessageFor(p => p.Resumo)
-
-        @Html.LabelFor(p => p.Categoria)
-        @Html.TextBoxFor(p => p.Categoria)
-        @Html.ValidationMessageFor(p => p.Categoria)
-
-        <button type="submit">Editar</button>
-    }
+        <button type="submit">Cadastrar</button>
+    </form>
     <script src="~/js/jquery-3.3.1.js"></script>
+    <script src="~/js/jquery.validate.js"></script>
     <script src="~/js/jquery.validate.unobtrusive.js"></script>
 </body>
 </html>
