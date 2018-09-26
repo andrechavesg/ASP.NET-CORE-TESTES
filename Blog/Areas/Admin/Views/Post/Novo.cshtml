@@ -1,0 +1,16 @@
+﻿@model Blog.Models.Post
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <h1>Novo Post</h1>
+    <form asp-controller="Post" asp-action="Adiciona" method="post">
+        @Html.EditorFor(p => p)
+        <button class="btn btn-primary" type="submit">Cadastrar</button>
+    </form>
+    @section Scripts {
+        @Html.Partial("_Scripts")
+    }
+</body>
+</html>

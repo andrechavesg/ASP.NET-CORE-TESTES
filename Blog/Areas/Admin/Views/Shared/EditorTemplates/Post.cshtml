@@ -1,0 +1,13 @@
+﻿@model Blog.Models.Post
+
+<label asp-for="Titulo"></label>
+<input class="form-control" asp-for="Titulo" />
+<span asp-validation-for="Titulo"></span>
+
+<label asp-for="Resumo"></label>
+<textarea class="form-control" asp-for="Resumo" rows="6" ></textarea>
+<span asp-validation-for="Resumo"></span>
+
+<label asp-for="Categoria"></label>
+<input class="form-control" asp-for="Categoria" />
+<span asp-validation-for="Categoria"></span>

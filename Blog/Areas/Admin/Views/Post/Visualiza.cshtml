@@ -1,0 +1,21 @@
+﻿@model Blog.Models.Post
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Visualiza</title>
+</head>
+<body>
+    <h1>Editar Post</h1>
+    <form asp-controller="Post" asp-action="EditaPost" method="post">
+        <input type="hidden" asp-for="Id" />
+        
+        @Html.EditorFor(p => p)
+
+        <button class="btn btn-primary" type="submit">Editar</button>
+    </form>
+    @section Scripts {
+        @Html.Partial("_Scripts")
+    }
+</body>
+</html>
