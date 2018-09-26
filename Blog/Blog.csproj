@@ -24,4 +24,9 @@
   <ItemGroup>
     <Compile Remove="Models\ErrorViewModel.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Update="Views\Shared\_Scripts.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
 </Project>
