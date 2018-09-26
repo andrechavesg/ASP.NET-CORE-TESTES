@@ -12,23 +12,13 @@ namespace Blog.Areas.Admin.Controllers
     [Area("Admin")]
     public class PostController : Controller
     {
-        private BlogContext contexto;
         private PostDAO dao;
 
-        public PostController()
+        public PostController(PostDAO postDAO)
         {
-            contexto = new BlogContext();
-            dao = new PostDAO(contexto);
+            dao = postDAO;
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if(disposing)
-            {
-                contexto.Dispose();
-            }
-            base.Dispose(disposing);
-        }
         // GET: /<controller>/
         public IActionResult Index()
         {

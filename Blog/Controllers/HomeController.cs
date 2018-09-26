@@ -12,21 +12,12 @@ namespace Blog.Controllers
 {
     public class HomeController : Controller
     {
-        BlogContext contexto;
         PostDAO dao;
-        public HomeController()
+        public HomeController(PostDAO postDAO)
         {
-            contexto = new BlogContext();
-            dao = new PostDAO(contexto);
+            dao = postDAO;
         }
-        protected override void Dispose(bool disposing)
-        {
-            if(disposing)
-            {
-                contexto.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
         public IActionResult Index()
         {
             IList<Post> publicados = dao.ListaPublicados();
