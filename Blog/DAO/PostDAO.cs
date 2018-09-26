@@ -11,7 +11,11 @@ namespace Blog.DAO
 {
     public class PostDAO
     {
-
+        private readonly BlogContext contexto;
+        public PostDAO(BlogContext contexto)
+        {
+            this.contexto = contexto;
+        }
         public IList<Post> Lista()
         {
             using (BlogContext contexto = new BlogContext())

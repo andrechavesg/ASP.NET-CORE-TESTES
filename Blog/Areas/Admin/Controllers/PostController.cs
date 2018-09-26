@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.DAO;
+using Blog.Infra;
 using Blog.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,10 +12,26 @@ namespace Blog.Areas.Admin.Controllers
     [Area("Admin")]
     public class PostController : Controller
     {
+        private BlogContext contexto;
+        private PostDAO dao;
+
+        public PostController()
+        {
+            contexto = new BlogContext();
+            dao = new PostDAO(contexto);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if(disposing)
+            {
+                contexto.Dispose();
+            }
+            base.Dispose(disposing);
+        }
         // GET: /<controller>/
         public IActionResult Index()
         {
-            PostDAO dao = new PostDAO();
             var lista = dao.Lista();
 
             return View(lista);
@@ -30,7 +47,6 @@ namespace Blog.Areas.Admin.Controllers
         public IActionResult Adiciona(Post post){
             if (ModelState.IsValid)
             {
-                PostDAO dao = new PostDAO();
                 dao.Adiciona(post);
 
                 return RedirectToAction("Index");
@@ -43,8 +59,6 @@ namespace Blog.Areas.Admin.Controllers
 
         public IActionResult Categoria([Bind(Prefix = "id")] string categoria)
         {
-            PostDAO dao = new PostDAO();
-
             var lista = dao.FiltraPorCategoria(categoria);
 
             return View("Index",lista);
@@ -52,7 +66,6 @@ namespace Blog.Areas.Admin.Controllers
 
         public IActionResult RemovePost(int id)
         {
-            PostDAO dao = new PostDAO();
             dao.Remove(id);
 
             return RedirectToAction("Index");
@@ -60,7 +73,6 @@ namespace Blog.Areas.Admin.Controllers
 
         public IActionResult Visualiza(int id)
         {
-            PostDAO dao = new PostDAO();
             Post post = dao.BuscaPorId(id);
 
             return View(post);
@@ -70,7 +82,6 @@ namespace Blog.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                PostDAO dao = new PostDAO();
                 dao.Atualiza(post);
 
                 return RedirectToAction("Index");
@@ -82,7 +93,6 @@ namespace Blog.Areas.Admin.Controllers
         
         public IActionResult PublicaPost(int id)
         {
-            PostDAO dao = new PostDAO();
             dao.Publica(id);
             return RedirectToAction("Index");
         }
