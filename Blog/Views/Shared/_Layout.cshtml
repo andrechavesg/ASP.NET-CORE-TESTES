@@ -1,12 +1,30 @@
-﻿<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<!DOCTYPE html>
+<html>
 <head>
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width" />
     <title>Resenha Cultural</title>
-    <link href="~/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="~/css//jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/estilo.css" type="text/css" />
 </head>
 <body>
-    @RenderBody()
+    <!-- cabeçalho -->
+    @Html.Partial("Cabecalho")
 
-    @RenderSection("Scripts",false)
+    <div class="container clearfix">
+        <!-- região principal -->
+        <main>
+            @RenderBody()
+        </main>
+
+        <!-- menu lateral -->
+        @Html.Partial("Lateral")
+    </div>
+
+    <!-- rodapé -->
+    @Html.Partial("Rodape")
+
+    <!-- seção opcional para carregar os scripts -->
+    @RenderSection("Scripts", false)
 </body>
 </html>

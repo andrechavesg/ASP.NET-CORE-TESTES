@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Blog.Models;
+using Blog.Infra;
+using Blog.DAO;
 
 namespace Blog.Controllers
 {
@@ -12,7 +14,9 @@ namespace Blog.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            PostDAO dao = new PostDAO();
+            IList<Post> publicados = dao.ListaPublicados();
+            return View(publicados);
         }
     }
 }
