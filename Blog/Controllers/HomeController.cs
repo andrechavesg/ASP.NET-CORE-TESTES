@@ -23,5 +23,11 @@ namespace Blog.Controllers
             IList<Post> publicados = dao.ListaPublicados();
             return View(publicados);
         }
+
+        public IActionResult Categoria([Bind(Prefix = "id")] string categoria)
+        {
+            IList<Post> posts = dao.FiltraPorCategoria(categoria);
+            return View("Index", posts);
+        }
     }
 }
